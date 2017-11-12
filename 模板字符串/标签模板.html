@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>标签模板</title>
+		<style>
+			input{
+				width: 200px;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" value="<script>alert('abc')</script>" id="texts">
+	</body>
+	<script>
+		// var a = 38;
+		// var b = 46;
+
+		// function tag(s,v1,v2){
+		//     console.log(s[0]);
+		//     console.log(s[1]);
+		//     console.log(s[2]);
+		//     console.log(v1);
+		//     console.log(v2);
+		//     return "ok";
+		// }
+		// var aaa = tag`Hello ${a+b} world ${a*b}`;
+		// console.log(aaa); // ok
+
+		// function tag(s,...val){
+		//     console.log(s);
+		//     console.log(s.raw);
+		//     console.log(val);
+		//     return "ok";
+		// }
+		// var aaa = tag`Hello ${a+b} world ${a*b}`;
+		// console.log(aaa); // ok
+
+
+
+
+
+
+		// var total = 30;
+		// var str = `The total is ${total} (${total*1.05} with tax)`;
+		// var msg = passthru`The total is ${total} (${total*1.05} with tax)`;
+
+		// function passthru(literals){
+		//     var result = "";
+		//     var i = 0;
+		//     console.log(literals);  // 参数
+		//     console.log(arguments);
+		//     while (i<literals.length){
+		//         result += literals[i++]; //literals这个数组包括的是模板字符串中那些没有变量替换的部分，也就是The total is,(,with tax).
+		//         if(i<arguments.length){
+		//             result+=arguments[i]; //arguments这个数组包括的是全部的参数，因为执行到这里的时候，i已经加1，所以result连接的是模板字符串各个变量被替换后的值。也就是这里的30,31.5
+		//         }
+		//     }
+		//     return result;
+		// }
+		// console.log(str);
+		// console.log(msg);
+
+
+		// ...传参
+		function zzr(...rrr){
+			console.log(rrr);
+		}
+		// zzr(1,2,3,4,5,6,7,8,6);
+
+
+
+		// 标签模板的一个重要应用，就是过滤HTML字符串，防止用户输入恶意内容
+		texts.onchange=function(){
+				function SaferHTML(templateData){
+				    var s = templateData[0];
+				    var i;
+				    for(i = 1;i<arguments.length;i++){
+				        var arg = String(arguments[i]);
+
+				        //sender里面可能有特殊字符，进行转义
+				        s += arg.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+				        s += templateData[i];
+				    }
+				    // console.log(i);//2，表示这个循环只执行了一次，因为templateData[0]="<p>",arguments这个数组只有${sender}这个元素，后面一长串字符都是templateData[2];
+				    return s;
+				}
+				var sender = this.value;
+				var message = SaferHTML`<p>${sender} has sent you a message.</p>`;
+				var messages = `<p>${sender} has sent you a message.</p>`;
+				console.log(message);
+				console.log(messages);
+		}
+		
+	</script>
+</html>
+
+
+
+
+
+
+
+

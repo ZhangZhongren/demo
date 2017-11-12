@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>模板字符串</title>
+	</head>
+	<body>
+		<textarea name="" id="text" cols="30" rows="10">
+			
+		</textarea>
+	</body>
+	<script>
+
+		// 相当于字符串的  拼接 就是加号
+		// function print(str1,str2){
+		// 	var str = `I do not know ${str1} to go,but I have been ${str2} the road. `
+		// 	alert(str);
+		// }
+		// print("where","on");
+
+
+
+
+		// 模板字符串中所有的空格、新行、缩进，都会原样输出在生成的字符串中。
+		// var str1 = "人生是条无名的河，是深是浅都要过，人最大的困难就是认识自己，最容易的也是认识自己。";
+		// var str2 = "所以，不怕前路坎坷，只怕一开始就做错了方向。";
+		// var str = `
+		// ${str1}
+		// 很多时候，我们认不清自己，只因为我们把自己放在了一个错误的位置，给了自己一个错觉。
+		// ${str2}
+		// `;
+		// alert(str);
+		// document.write(str); // 不能识别换行符
+		// console.log(str);
+		// text.innerText = str;  // 放在文本域里面 换行符就会被识别
+
+
+		var arr = [1,2,3,4,5,6,7,8,9];
+		var arr2 = [[1,2,3],[4,5,6],[7,8,9]];
+		var str = `${arr2}哈哈哈`;
+		alert(str);
+		document.write(str); 
+		console.log(str);	
+		text.innerText = str;
+
+
+	</script>  
+</html>
+
+
+
+
+
+
+
+
