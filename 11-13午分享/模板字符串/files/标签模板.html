@@ -28,6 +28,11 @@
 		// var aaa = tag`Hello ${a+b} world ${a*b}`;
 		// console.log(aaa); // ok
 
+
+
+
+
+
 		// function tag(s,...val){
 		//     console.log(s);
 		//     console.log(s.raw);
@@ -63,35 +68,39 @@
 		// console.log(msg);
 
 
+
+		
 		// ...传参
-		function zzr(...rrr){
-			console.log(rrr);
-		}
+//		function zzr(...rrr){
+//			console.log(rrr);
+//		}
 		// zzr(1,2,3,4,5,6,7,8,6);
 
 
 
-		// 标签模板的一个重要应用，就是过滤HTML字符串，防止用户输入恶意内容
-		texts.onchange=function(){
-				function SaferHTML(templateData){
-				    var s = templateData[0];
-				    var i;
-				    for(i = 1;i<arguments.length;i++){
-				        var arg = String(arguments[i]);
 
-				        //sender里面可能有特殊字符，进行转义
-				        s += arg.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-				        s += templateData[i];
-				    }
-				    // console.log(i);//2，表示这个循环只执行了一次，因为templateData[0]="<p>",arguments这个数组只有${sender}这个元素，后面一长串字符都是templateData[2];
-				    return s;
-				}
-				var sender = this.value;
-				var message = SaferHTML`<p>${sender} has sent you a message.</p>`;
-				var messages = `<p>${sender} has sent you a message.</p>`;
-				console.log(message);
-				console.log(messages);
-		}
+		
+		// 标签模板的一个重要应用，就是过滤HTML字符串，防止用户输入恶意内容
+//		texts.onchange=function(){
+//				function SaferHTML(templateData){
+//				    var s = templateData[0];
+//				    var i;
+//				    for(i = 1;i<arguments.length;i++){
+//				        var arg = String(arguments[i]);
+//
+//				        //sender里面可能有特殊字符，进行转义
+//				        s += arg.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+//				        s += templateData[i];
+//				    }
+//				    // console.log(i);//2，表示这个循环只执行了一次，因为templateData[0]="<p>",arguments这个数组只有${sender}这个元素，后面一长串字符都是templateData[2];
+//				    return s;
+//				}
+//				var sender = this.value;
+//				var message = SaferHTML`<p>${sender} has sent you a message.</p>`;
+//				var messages = `<p>${sender} has sent you a message.</p>`;
+//				console.log(message);
+//				console.log(messages);
+//		}
 		
 	</script>
 </html>
