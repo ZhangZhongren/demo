@@ -1,0 +1,7 @@
+CACHE MANIFEST
+# 第一行必须为CACHE MANIFEST 这是注释的内容
+CACHE:
+# 需要缓冲的内容
+index.html
+index.css
+img/1.jpg

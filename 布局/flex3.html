@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background:#000;
+        }
+        .main {
+            width: 180px;
+            height: 180px;
+            background: #fff;
+            border-radius: 20px;
+            margin: 100px auto;
+            padding: 25px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            display: flex;
+            /*--1--*/
+            /*justify-content: center;
+            align-items: center;*/
+
+            /*--2--*/
+            /*flex-direction: column;
+            justify-content: space-between;
+            align-items: center;*/
+
+            /*--3--*/
+
+            /*--4--*/
+            flex-wrap:wrap;
+            align-content:space-between;
+        }
+       /* .item{
+        	width:40px;
+            height:40px;
+            background:#000;
+            border-radius:40px;
+        }
+        .item:nth-child(2){
+        	align-self: center;
+        }
+        .item:nth-child(3){
+        	align-self: flex-end;
+        }*/
+
+        /*--4--*/
+        .column >div{
+            width:40px;
+            height:40px;
+            background:#000;
+            border-radius:40px;
+        }
+        .column{
+            flex-basis:100%;
+            display:flex;
+            justify-content: space-between;
+        }
+
+        /*--5--*/
+       /* .column:nth-child(2){
+        	justify-content: center;
+        }*/
+    </style>
+</head>
+<body>
+	<div class="main">
+		<!-- <div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div> -->
+
+		<!-- 4 -->
+	   <!--  <div class="column">
+	        <div class="item"></div>
+	        <div class="item"></div>
+	    </div>
+	    <div class="column">
+	        <div class="item"></div>
+	        <div class="item"></div>
+	    </div> -->
+		
+		<!-- 5 -->
+	    <div class="column">
+	        <div class="item"></div>
+	        <div class="item"></div>
+	    </div>
+	    <div class="column">
+	        <div class="item"></div>
+	        <!-- 6 -->
+	        <div class="item"></div>
+	    </div>
+	    <div class="column">
+	        <div class="item"></div>
+	        <div class="item"></div>
+	    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>本地存储Cookie</title>
+		<style>
+			*{
+				margin: 0;
+				padding-left:0;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="0">
+	</body>
+	<script  type="text/javascript" charset="utf-8" async defer>
+
+		if(getCookie('count')){
+			document.getElementsByTagName('input')[0].value = getCookie('count')
+		}
+
+
+		document.getElementsByTagName('input')[0].onclick=function(){
+			this.value ++;
+			var date = new Date();
+			date.setDate(date.getDate() + 3)//三天以后过期
+			document.cookie = 'count = '+this.value+';expires = '+ date.toUTCString() +'';
+		}
+		// 存储cookie 方式 键 = 值
+		//  读取  document.cookie
+		// cookie 必须依赖于服务器环境
+
+		var date = new Date();
+		date.setDate(date.getDate() + 3)//三天以后过期
+
+		document.cookie = 'age = 18;expires = '+ date.toUTCString() +'';
+		document.cookie = 'name = 李四;expires = '+ date.toUTCString() +'';
+		console.log(document.cookie);
+
+
+
+		// 取cookie里面指定key 的值的函数
+		function getCookie(key){
+			var arr = document.cookie.split('; ');
+			for(index in arr){
+				var resArr = arr[index].split('=');
+				if(resArr[0] == key){
+				return resArr[1];
+				}
+			}
+			 
+		}
+		console.log(getCookie('name'));
+		console.log(getCookie('age'));
+		
+	</script>
+</html>

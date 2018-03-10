@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+			html {width:100vw;height:100vh;perspective:1000px;}
+			body{background:#ECEFF1;}
+			.img {
+			  position: fixed;
+			  width: 300px;
+			  height: 450px;
+			  left: calc(50vw - 150px);
+			  top: calc(50vh - 225px);
+			  background-image: url("http://www.jq22.com/tp/daf200fb-6ef2-4a4f-9405-6074841f01fc.jpg");
+			  background-size: 250%;
+			  background-position: -110px 0; 
+			  border-radius: 2px;
+			  box-shadow: 0px 12px 40px rgba(0,0,0,0.5);
+			}
+			
+			#csmimg {
+			  border: 0px;
+			  border-radius: 3px;
+			  outline: none;
+			  background: transparent;
+			  font-family: Roboto;
+			  font-size: 16px;
+			  font-weight: 300;
+			  position: fixed;
+			  padding: 7px;
+			  width: 500px;
+			  top: 5px;
+			  left: calc(50vw - 250px);
+			  text-align: center;
+			  opacity: 0.7;
+			  box-shadow: 0px 5px 10px rgba(0,0,0,0);
+			  transition: opacity 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+			}
+			
+			#csmimg:hover {
+			  background: rgba(255,255,255,0.35);
+			  box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+			}
+			
+			#csmimg:focus {
+			  background: rgba(255,255,255,0.75);
+			  box-shadow: 0px 5px 10px rgba(0,0,0,0.25);
+			}
+			
+			@media screen and (max-height: 420px) {
+			  html {
+			    transform: scale(0.65);
+			    margin-top: 0px;
+			  }
+			  
+			  #csmimg {
+			    top: -90px;
+			    transform: scale(1.3);
+			  }
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="csmimg" placeholder="Custom image ( Only URL )" />
+		<div class="img"></div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(window).mousemove(function(e){
+			  var lft = e.pageX / 35 + 85;
+			  var tp = e.pageY / 35;
+			  $('.img').css({"background-position": '-'+lft+'px -'+tp+'px'});
+			
+			
+			  var pagewidth = $(window).width();
+			  var pwcalc = pagewidth/2;
+			  var calcX = e.pageX - pwcalc;
+			  var fclcX = calcX / 45;
+			  
+			  var pageheight = $(window).height();
+			  var phcalc = pageheight/2;
+			  var calcY = e.pageY - phcalc;
+			  var fclcY = calcY / 60;
+			  var rtX = fclcY *= -1;
+			
+			  var lft2 = e.pageX / 45;
+			  var tp2 = e.pageY / 35;
+			  var lft21 = lft2 *= -1;
+			  var tp21 = tp2 *= -1;
+			  
+			  $('.img').css({"transform":"translate(calc("+lft21+"px + 20px),"+tp21+"px) rotateY("+fclcX+"deg) rotateX("+fclcY+"deg)"});
+		});
+		
+		$(window).mousemove(function(e){
+			  var pgwdt = $(window).width();
+			  var pgwclc = pgwdt/2;
+			  var clcX = e.pageX - pgwclc;
+			  var fclcfX = clcX / 50;
+			  var fclcfXrev = fclcfX *= -1;
+			  
+			  var pght = $(window).height();
+			  var pghclc = pght/2;
+			  var clcY = e.pageY - pghclc;
+			  var fclcfY = clcY / 50 - 12;
+			  var fclcfYrev = fclcfY *= -1;
+			  
+			  $('.img').css({"box-shadow":+fclcfXrev+"px "+fclcfYrev+"px 40px rgba(0,0,0,0.5)"});
+		});
+		
+		$("#csmimg").keyup(function() {
+		  	$(".img").css("background-image", "url('" + $("#csmimg").val() + "')");
+		});
+		
+		$("#csmimg").on('keyup', function(e) {
+			  if ($(this).val() == "") {
+			    		$('.img').css('background-image', 'url(http://www.jq22.com/tp/daf200fb-6ef2-4a4f-9405-6074841f01fc.jpg)');
+			  }
+		})
+	</script>
+</html>

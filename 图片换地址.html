@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片换地址</title>
+	<style>
+	body{
+		height: calc(100vh);
+		width: calc(100vw);
+		background-color: #239EFA;
+	}
+		.box{
+			width: 450px;
+			padding: 20px;	
+			overflow: hidden;
+			height: 560px;
+			border-radius: 10px;
+			margin: 100px 650px;
+			background-color: white;
+		}
+		.show{
+			width: 300px;
+			height: 300px;
+			border-radius: 10px;
+			float: left;
+			margin-right: 25px;
+		}
+		.show img{
+			width: 300px;
+			height: 300px;
+		}
+		div,div img{
+			width: 100px;
+			height: 100px;
+			border-radius: 5px;
+			margin: 5px;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="show"><img src="img/zzr2.jpg" alt=""></div>
+		<div><img src="img/zzr05.jpg" alt=""></div>
+		<div><img src="img/zzr06.jpg" alt=""></div>
+		<div><img src="img/zzr07.jpg" alt=""></div>
+		<div><img src="img/zzr08.jpg" alt=""></div>
+		<div><img src="img/zzr09.jpg" alt=""></div>
+		<div><img src="img/zzr10.jpg" alt=""></div>
+		<div><img src="img/zzr11.jpg" alt=""></div>
+		<div><img src="img/zzr12.jpg" alt=""></div>
+		<div><img src="img/zzr13.jpg" alt=""></div>
+		<div><img src="img/zzr14.jpg" alt=""></div>
+		<div><img src="img/zzr1.jpg" alt=""></div>
+	</div>
+</body>
+	<script>
+		var imgS = document.getElementsByTagName('img');
+		for(var i=1;i<imgS.length;i++){
+			imgS[i].onmouseover=function(){
+				imgS[0].src=this.src;
+			}
+		}
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+

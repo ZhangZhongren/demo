@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flex2</title>
+	<style>
+		.box {
+			margin: 30px auto;
+			width: 300px;
+			height: 300px;
+			border: 2px solid red;
+			display: flex;
+			/*两边对齐*/
+			justify-content: space-between;
+			/*纵轴*/
+			/*flex-direction: column;*/
+			/*垂直轴*/
+			/*align-items: center;*/
+			/*右边*/
+			/*align-items: flex-end;*/
+		}
+		.item{
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background: black;
+		}
+		.item2{
+			align-self: center;
+			/*align-self: flex-end;*/
+		}
+		.item3{
+			/*align-self: center;*/
+			align-self: flex-end;
+		}
+	</style>
+</head>
+<body>
+	 <!-- 容器 -->
+	<div class="box">
+	<!-- 元素 -->
+	  <div class="item1 item"></div>
+	  <div class="item2 item"></div>
+	  <div class="item3 item"></div>
+
+	</div>
+</body>
+</html>

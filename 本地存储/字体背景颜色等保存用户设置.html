@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>本地储存</title>
+		<style>
+			.box{width: 800px;height: 600px;border: 3px solid lightskyblue;margin: 100px auto;}
+			.setBox{width: 100%;height: 50px;background-color: lightslategrey;position: relative;}
+			#fontSizeControl{position: absolute;left: 500px;top: 15px;background-color: lightskyblue;border: 0;}
+			#colorControl{position: absolute;left: 570px;top: 15px;background-color: lightskyblue;border: 0;}
+			.info{padding: 20px;width: 760px;height: 510px;overflow: auto;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="setBox">
+				<select name="字号" id="fontSizeControl" value= "字号">
+					<option value="16px">字号</option>
+					<option value="16px">16px</option>
+					<option value="18px">18px</option>
+					<option value="20px">20px</option>
+					<option value="22px">22px</option>
+					<option value="24px">24px</option>
+					<option value="26px">26px</option>
+					<option value="28px">28px</option>
+					<option value="30px">30px</option>	
+				</select>
+				<select name="字号" id="colorControl" value= "字号">
+					<option value="white">颜色</option>
+					<option value="yellowgreen">yellowgreen</option>
+					<option value="lightblue">lightblue</option>
+					<option value="lightgray">lightgray</option>	
+				</select>
+			</div>
+			<div class="info">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, magnam, accusamus. Accusantium consectetur possimus blanditiis incidunt ullam quaerat tempora magni aperiam explicabo, provident laborum nam voluptatem modi soluta mollitia repellat quas assumenda molestiae. Quod minus repudiandae voluptas voluptatibus libero soluta delectus voluptate est, veritatis nulla, atque illo fuga earum modi consequuntur, eaque accusamus consequatur doloremque! Velit rerum aspernatur fugiat labore ea inventore minus, earum accusantium rem quaerat, fugit, hic autem incidunt nostrum cum. Sapiente esse, cumque consequuntur nesciunt obcaecati vero optio pariatur delectus. Illo dolore esse voluptate corrupti, dolorem perspiciatis minus, dolor iste sapiente nihil delectus. Assumenda cumque similique doloremque pariatur natus fugit nobis sequi amet itaque, libero, maxime aperiam asperiores praesentium vel obcaecati consectetur distinctio adipisci reiciendis accusamus, quam explicabo eaque magni, dolore? Libero debitis amet nisi? Doloribus ab nesciunt ullam illum delectus fugit temporibus aliquid totam, error ducimus reprehenderit iste iure ipsam earum tenetur cumque vel sed dolorum nobis illo ex officia, voluptatibus animi laborum! Dolorum culpa mollitia ex autem animi, praesentium beatae dicta aliquam magni eaque nemo possimus expedita officia voluptatem a quod veritatis sequi ipsum perspiciatis eligendi voluptas soluta ratione. Unde, qui, at. Nostrum sint labore veritatis rem aliquid ipsa nam quia amet accusamus cupiditate, fuga possimus dolores in tempore omnis sapiente, deleniti odit ducimus quisquam quam suscipit. Accusamus ratione itaque, sapiente tempore alias! Quaerat doloremque dolorem deleniti sunt, eius fuga assumenda tempore corporis reiciendis exercitationem nobis nisi, id? Ad reiciendis ratione quis consectetur voluptatem magni nesciunt, aspernatur esse blanditiis saepe sed cumque, ipsam alias earum dolorum repudiandae. Blanditiis, odit. Officiis at porro, odit sunt minus totam eius asperiores mollitia aliquid voluptates. Distinctio minima ex architecto eius quaerat harum nobis dignissimos voluptatem ipsam qui porro itaque rerum, quibusdam natus eaque enim et, maiores in, atque dicta eligendi voluptatibus odio! Recusandae, sit vel qui in, esse non.
+			</div>
+		</div>
+		<input type="checkbox" style="background-color: red;">
+	</body>
+	<script>
+		var fontSizeControl = document.getElementById('fontSizeControl');
+		var colorControl = document.getElementById('colorControl');
+		var info = document.getElementsByClassName('info')[0];
+
+		if(localStorage.fontSize&&localStorage.color){
+			info.style.fontSize =localStorage.fontSize;
+			info.style.backgroundColor =localStorage.color;
+			fontSizeControl.value = localStorage.fontSize;
+			colorControl.value = localStorage.color;
+		}
+		fontSizeControl.onchange = function(){
+			info.style.fontSize = this.value;
+			localStorage.fontSize = this.value;
+		}
+		colorControl.onchange = function(){
+			info.style.backgroundColor = this.value;
+			localStorage.color = this.value;
+		}
+	</script>
+</html>

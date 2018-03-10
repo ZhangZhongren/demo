@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百分比布局</title>
+	<style>
+		.Grid {
+		  	width: 600px;
+			height: 300px;
+			border: 2px solid black;
+		  	display: flex;
+		}
+
+		.Grid-cell {
+		  	height: 30px;
+			border: 1px solid red;
+			background: lightgray;
+		  	flex: 1;
+		}
+
+		/*.Grid-cell:nth-child(1) {
+		  flex: 0 0 30%;
+		}*/
+
+		/*.Grid-cell:nth-child(2) {
+		  flex: 0 0 20%;
+		}*/
+
+		.Grid-cell:nth-child(3) {
+		  flex: 0 0 50%;
+		}
+
+
+	</style>
+</head>
+<body>
+<!-- 某个网格的宽度为固定的百分比，其余网格平均分配剩余的空间。 -->
+	<div class="Grid">
+	  <div class="Grid-cell">1</div>
+	  <div class="Grid-cell">2</div>
+	  <div class="Grid-cell">3</div>
+	  <div class="Grid-cell">4</div>
+	</div>
+</body>
+</html>

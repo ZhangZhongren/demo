@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>localStorage存储对象</title>
+</head>
+<body>
+	<!-- localStorage 没有时间限制的数据存储 -->
+</body>
+<script>
+	var obj = {
+		user: "sunii",
+		pass: "123345",
+	}
+	// localStorage只能存储字符串类型数据
+	// 将对象转换为字符串
+	window.localStorage.setItem("demo",JSON.stringify(obj));
+	alert(window.localStorage.getItem("demo"));
+	// 取出数据
+	var obj = window.localStorage.getItem("demo");
+	alert(typeof(obj));
+	// 将字符串转换为对象
+	var toObj = JSON.parse(obj);
+	console.log(toObj);
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>yuan</title>
+	<style>
+		.ball{
+			width: 200px;
+			height: 200px;
+			margin: 400px auto;
+		}
+		.ball .wave{
+			width: 200px;
+			height: 200px;
+			background-color: blue;
+			border-radius: 50%;
+			position: relative;
+			overflow: hidden;
+		}
+		.wave::before,.wave::after{
+			content:"";
+			width: 400px;
+			height: 400px;
+			position: absolute;
+			top: -100%;
+			left: -50%;
+		}
+		.wave::before{
+			background-color: white;
+			border-radius: 50%;
+			z-index: 100;
+			animation: rotate_before 10s linear infinite;
+		}
+		.wave::after{
+			opacity: 0.7;
+			border-radius: 40%;
+			background-color: lightblue;
+			animation: rotate_after 10s linear infinite;
+		}
+		@keyframes rotate_before {
+			from {
+				transform: translate(0%,0) rotate(0deg);
+			}
+			to{
+				transform: translate(0%,-60%) rotate(30deg);
+			}
+		}
+		@keyframes rotate_after {
+			from {
+				transform: translate(0%,0) rotate(0deg);
+			}
+			to{
+				transform: translate(0%,-60%) rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="ball">
+		<div class="wave"></div>
+	</div>
+</body>
+</html>

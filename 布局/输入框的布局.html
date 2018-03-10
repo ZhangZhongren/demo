@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入框的布局</title>
+	<style>
+		.InputAddOn {
+		  display: flex;
+		  width: 700px;
+		  height: 50px;
+		  border: 1px solid red;
+		}
+		.InputAddOn-item1{
+			flex: 1;
+			border: 1px solid lightgray;
+		}
+		.InputAddOn-field {
+		  	flex: 5;
+		}
+		.InputAddOn-item2{
+			flex: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="InputAddOn">
+	  <span class="InputAddOn-item1">提示</span>
+	  <input class="InputAddOn-field">
+	  <button class="InputAddOn-item2">按钮</button>
+	</div>
+</body>
+</html>

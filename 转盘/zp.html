@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.g-content {
+		    width: 100%;
+		    background: #fbe3cc;
+		    height: auto;
+		    font-family: "微软雅黑", "microsoft yahei";
+		 }
+		 .g-content .g-lottery-case {
+		    width: 500px;
+		    margin: 0 auto;
+		    overflow: hidden;
+		}
+		.g-content .g-lottery-case .g-left h2 {
+		    font-size: 20px;
+		    line-height: 32px;
+		    font-weight: normal;
+		    margin-left: 20px;
+		}
+		.g-content .g-lottery-case .g-left {
+		    width: 450px;
+		    float: left;
+		 }
+		.g-lottery-box {
+		    width: 400px;
+		    height: 400px;
+		    margin-left: 30px;
+		    position: relative;
+		    background: url(img/ly-plate-c.gif) no-repeat;
+		}
+		.g-lottery-box .g-lottery-img {
+		    width: 340px;
+		    height: 340px;
+		    position: relative;
+		    background: url(img/bg-lottery.png) no-repeat;
+		    left: 30px;
+		    top: 30px;
+		   	transform:rotate(0deg);
+		   	/*transition: all 4s ease;*/
+		   	animation: move 1s forwards;
+		}
+		
+		.g-lottery-box .playbtn {
+		    width: 186px;
+		    height: 186px;
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    margin-left: -94px;
+		    margin-top: -94px;
+		    background: url(img/playbtn.png) no-repeat;
+		}
+		@keyframes move1{
+			from{transform: rotate(0deg);}
+			to{transform: rotate(1440deg);}
+		}
+		@keyframes move2{
+			from{transform: rotate(0deg);}
+			to{transform: rotate(1500deg);}
+		}
+		@keyframes move3{
+			from{transform: rotate(0deg);}
+			to{transform: rotate(1560deg);}
+		}
+		@keyframes move4{
+			from{transform: rotate(0deg);}
+			to{transform: rotate(1620deg);}
+		}
+		@keyframes move5{
+			from{transform: rotate(0deg);}
+			to{transform: rotate(1680deg);}
+		}
+		@keyframes move6{
+			from{transform: rotate(0deg);}
+			to{transform: rotate(1740deg);}
+		}
+		@keyframes move7{
+			from{transform: rotate(0deg);}
+			to{transform: rotate(0deg);}
+		}
+	</style>
+</head>
+<body>
+	<div class="g-content">
+  		<div class="g-lottery-case">
+    		<div class="g-left">
+      			<h2>您已拥有<span class="playnum"></span>次抽奖机会，点击立刻抽奖！~</h2>
+      			<div class="g-lottery-box">
+        			<div class="g-lottery-img" id="playImg"></div>
+        			<a class="playbtn" href="javascript:;" rel="external nofollow" rel="external nofollow" title="开始抽奖"></a>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+	function Rand(max,min){
+		return parseInt(Math.random()*(max-min)+min);
+	}
+	var last = 0;
+	var clickfunc = function(){
+		var data = Rand(0,6);
+		while(data == last) {
+			data = Rand(0,6);
+		}
+		last = data;
+		console.log(data)
+		switch(data) {
+	      case 0:
+	        rotateFunc(0,'恭喜您获得2000元理财金');
+	        break;
+	      case 1:
+	        rotateFunc(1,'恭喜您获得1000元理财金2');
+	        break;
+	      case 2:
+	        rotateFunc(2,'谢谢参与4');
+	        break;
+	      case 3:
+	        rotateFunc(3,'恭喜你获得京东e卡');
+	        break;
+	      case 4:
+	        rotateFunc(4,'恭喜你获得5200元理财金');
+	        break;
+	      case 5:
+	        rotateFunc(5,'谢谢参与6');
+	        break;
+	    }
+	}
+
+	function rotateFunc(data,text){
+			console.log(isTrue);
+			isTrue=false;
+			switch(data){
+				case 0:
+					document.getElementById("playImg").style.animation="move1 4s forwards";
+					break;
+				case 1:
+					document.getElementById("playImg").style.animation="move2 4s forwards";
+					break;
+				case 2:
+					document.getElementById("playImg").style.animation="move3 4s forwards";
+					break;
+				case 3:
+					document.getElementById("playImg").style.animation="move4 4s forwards";
+					break;
+				case 4:
+					document.getElementById("playImg").style.animation="move5 4s forwards";
+					break;
+				case 5:
+					document.getElementById("playImg").style.animation="move6 4s forwards";
+					break;
+				default:
+					document.getElementById("playImg").style.animation="move6 4s forwards";
+					break;
+			}
+			sport = setTimeout(function(){
+				alert(text);
+				isTrue = true;
+				clearTimeout(sport);
+				// document.getElementById("playImg").style.animation="";
+			},4000);
+	}
+	var sport;
+	var isTrue = true;
+	var playImg = document.getElementById("playImg");
+	$(".playbtn").click(function(){
+		// playImg.style.animationDuration = "0s";
+		// playImg.style.transform = "rotate(0deg)";
+		if(isTrue){
+			playImg.style.animationDuration = "4s";
+			isTrue=false;
+			clickfunc();
+		}
+	})
+</script>
+</html>

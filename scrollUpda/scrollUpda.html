@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: black;
+			}
+			.box{
+				background-color: white;
+				width: 900px;
+				border: 1px solid red;
+				margin: 100px auto;
+			}
+			ul{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				padding: 0 30px ;
+			}
+			li{
+				height: 100px;
+				border: 1px solid lightgreen;
+				text-align: center;
+				line-height: 100px;
+				font-size: 30px;
+				color: lightpink;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="item">
+				<!--<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>-->
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var item = document.getElementsByClassName("item")[0];
+		var body = document.getElementsByTagName('body')[0];
+		
+		window.onload=upload; // 页面加载完成获取第一组数据
+		function upload(){//获取数据的函数
+			//调用封装的对象里面的方法 第一个参数 地址和参数的拼接 第二个是得到数据之后处理数据的回调函数
+			Unit.ajax("scrollUpda.php?"+"num="+Unit.num,creatElement); 
+		}
+		//把数据渲染到页面的函数
+		function creatElement(data){
+			for(var i in data){ // 便利数据 向页面动态插入元素
+				Unit.num++
+				var li = document.createElement("li");
+				li.innerHTML = data[i];
+				if(data[i]==="没有了"){ // 判断数据是否全部加载完毕 全部加载完毕之后不再检测鼠标滚轮
+						body.onscroll=null;
+					}
+				item.appendChild(li);
+			}
+		}
+		//鼠标滚动早最下边自动加载数据
+		body.onscroll=function(ev){
+			//document.documentElement.scrollTop 页面滚动上去的高度
+			//this.innerHeight 屏幕的高度
+			if(document.documentElement.scrollTop + this.innerHeight > item.offsetHeight + item.offsetTop){
+				 upload(); //满足条件 即滚动到页面最下端 执行获取数据的函数
+			}
+		}
+		//封装对象向后台发送请求获取数据 定义一个变量保存数据加载的位置
+		var Unit = {
+			//参数 第一个 发送请求的地址 第二个是数据加载完成之后的回调函数
+			ajax: function(url,callback){
+				var xhr = new XMLHttpRequest();
+				xhr.onload=function(){
+					var data = JSON.parse(this.responseText);
+					callback(data);
+				}
+				xhr.open("GET",url,true);
+				xhr.send(null);
+			},
+			num : 0
+		}
+	</script>
+</html>

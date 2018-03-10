@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>grid</title>
+	<style>
+	/*网格容器（Grid Container）和网格项（Grid Items）
+	网格列：指的是两个相邻垂直线的空间。列的尺寸由grid-template-columns属性来决定。
+	网格行：是两个相邻平行线之间的空间。它的尺寸由grid-template-rows属性决定。
+	*/
+		.wrapper {
+			color: white;
+			font-size: 20px;
+		    display: grid;
+		    /*列*/
+		    grid-template-columns: 100px 100px 100px;
+		    /*行*/
+   			grid-template-rows: 50px 50px;
+   			/*网格间隙*/
+   			grid-gap: 10px 20px;
+		}
+		.wrapper div:nth-of-type(1){
+			background: red;
+		}
+		.wrapper div:nth-of-type(2){
+			background: green;
+		}
+		.wrapper div:nth-of-type(3){
+			background: blue;
+		}
+		.wrapper div:nth-of-type(4){
+			background: yellow;
+		}
+		.wrapper div:nth-of-type(5){
+			background: skyblue;
+		}
+		.wrapper div:nth-of-type(6){
+			background: black;
+		}
+		.wrapper .item1 {
+		    grid-column-start: 1;
+		    grid-column-end: 3;
+		}
+
+		.item1 {
+		    grid-column-start: 1;
+		    grid-column-end: 3;
+		}
+		.item3 {
+		    grid-row-start: 2;
+		    grid-row-end: 4;
+		}
+		.item4 {
+		    grid-column-start: 2;
+		    grid-column-end: 4;
+		}
+		
+		.container{
+		    display: grid;
+		    border: 1px dashed gray;
+		    width: 300px;
+		    margin-top: 20px;
+		    /*fr 单位允许你将一个轨道大小设置为网格容器内自由空间的一小部分*/
+		    grid-template-columns: repeat(3, 1fr);
+		    grid-gap: 10px 20px;
+		}
+		.container>div{
+			background: pink;
+		}
+		.container .item1{
+			/*使用span来实现跨行或列*/
+		    grid-column: 1/span 3;
+		    /  /列的第1条网格线开始，跨3列
+		}
+		.container .item2{
+		  grid-row: 2/span 3;
+		  grid-column: 2/span 2;
+		  /*//等价于 grid-area: 2/ 2 / span 3 / span 2*/
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+	   <div class="item1">1</div>
+	  <div class="item2">2</div>
+	  <div class="item3">3</div>
+	  <div class="item4">4</div>
+	  <div class="item5">5</div>
+	  <div class="item6">6</div>
+	</div>
+
+	<div class="container">
+	    <div class="item1">1</div>
+	    <div class="item2">2</div>
+	    <div>3</div>
+	    <div>4</div>
+	    <div>5</div>
+	</div>
+</body>
+</html>

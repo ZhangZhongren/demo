@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas邀请卡</title>
+    <style>
+        .set-option{
+            float: left;
+            width: 400px;
+        }
+        .set-option .test{
+            width: 200px;
+            height: 40px;
+            padding-left: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .set-option td{
+            padding: 10px 0;
+        }
+         .set-option td:first-child{
+            text-align: right;
+            padding-right: 10px;
+         }
+          .set-option p{
+            margin: 0;
+            line-height: 16px;
+          }
+          .check-box{
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            vertical-align: top;
+          }
+          button{
+            width: 200px;
+            height: 50px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+          }
+          button:hover{
+            opacity: 0.9;
+          }
+          .btn-save{
+            background: #0f9;
+          }
+          .btn-download{
+            background: #09f;
+          }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="set-option">
+            <table>
+                <tr>
+                    <td>画布尺寸</td>
+                    <td><input type="text" class="text" id="size"></td>
+                </tr>
+                <tr>
+                    <td>背景图片</td>
+                    <td><input type="file" id="file"></td> 
+                </tr>
+                <tr>
+                    <td>用户名</td>
+                    <td><input type="text" class="text" id="user-name"></td>
+                </tr>
+                <tr>
+                    <td>用户名X坐标</td>
+                    <td>
+                        <input type="text" class="text" id="text-option-x"><br/>
+                        <p><input type="checkbox" class="check-box" value="1" id="is-center-x">居中显示</p>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>用户名Y坐标</td>
+                    <td>
+                        <input type="text" class="text" id="text-option-y"><br/>
+                        <p><input type="checkbox" class="check-box" value="1" id="is-center-y">居中显示</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>用户名字体大小</td>
+                    <td><input type="number" class="text" id="text-size"></td>
+                </tr>
+                <tr>
+                    <td>文字颜色</td>
+                    <td><input type="text" class="text" id="text-color"></td>
+                </tr>
+                <tr>
+                    <td>图片类型</td>
+                    <td>
+                        <select type="text" class="text" id="img-type">
+                            <option value="jpg">jpg</option>
+                            <option value="png">png</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <button id="save-image" class="btn-save" onclick="saveImageInfo()">效果预览</button>
+            <button id="download-img" class="btn-download" onclick="downloadImg(option.text)">下载当前图片</button>
+        </div>
+        <div class="show-canvas">
+            <canvas width="200" height="200" id="canvas1">您的浏览器不支持canvas</canvas>
+        </div>
+    </div>
+</body>
+<script>
+    
+    var option = {
+        img: 'timg-1.jpeg',
+        width: 500,
+        height: 350,
+        fontSize: "20px Microsoft YaHei",
+        color: "#000",
+        text: '段大彪诚邀',
+        imgType: 'jpg',
+        x: 30,
+        y: 30,
+        xCenter: false,
+        yCenter: false,
+    };
+ var canvas = document.getElementById("canvas1");
+    function draw(obj){
+        // 画布大小
+        canvas.width = obj.width;
+        canvas.height = obj.height;
+        // 设置图片
+        var img = new Image();
+        img.src = obj.img;
+        var context = canvas.getContext("2d");
+        // 设置字体的坐标
+        var _x = obj.x;
+        var _y = obj.y;
+        // 是否居中
+        if(obj.xCenter){
+            _x = obj.width/2;
+        }
+        if(obj.yCenter){
+            _y = obj.height/2;
+        }
+        // 图片加载
+        img.onload = function(){
+            // 画图
+            context.drawImage(img,0,0);
+            // 设置文字的大小
+            context.font = obj.fontSize;
+            // 设置文字的颜色
+            context.fillStyle = obj.color;
+            // 设置文字坐标
+            if(obj.xCenter){
+                context.textAlign = "center";
+            }
+            // 画文字
+            context.fillText(obj.text,_x,_y);
+        }
+    }
+  	draw(option);
+    var size = document.getElementById("size");
+    size.onblur = function(){
+        // 根据空格，区分宽高
+        //替换掉字符串前后空格
+        var _width = parseInt(size.value.replace(/(^\s*)|(\s*$)/g, "").split(" ")[0]);
+        var _height = parseInt(size.value.replace(/(^\s*)|(\s*$)/g, "").split(" ")[1]);
+        console.log();
+        // 把参数的width和height改掉
+        option.width = _width || 100;
+        option.height = _height || 100;
+        // 重新画图
+        draw(option);
+    }
+
+    // 选择图片
+    // 获取图片的控件
+    var file = document.getElementById('file');
+    var imagesFile;
+    var imageData;
+    file.onchange = function(e){
+        // 获取图片
+        imagesFile = e.target.files[0];
+        // 把图片转base64
+        var reader = new FileReader();
+        reader.readAsDataURL(imagesFile);
+        // 图片加载完成后
+        reader.onload = function(){
+            // 设置option的img属性，再重新绘制
+            imageData = this.result;
+            option.img = imageData;
+            draw(option);
+        }
+    }
+
+    //用户名
+    var userName = document.getElementById("user-name");
+    userName.onblur = function(){
+        var _text = userName.value.replace(/(^\s*)|(\s*$)/g, "").split(" ");
+        option.text = _text[0];
+        draw(option);
+    }
+
+    // 改变用户名的坐标
+    // 横坐标
+    var optionXcenter = document.getElementById("is-center-x");
+    var optionX =document.getElementById("text-option-x");
+    optionX.value = option.x;
+    optionX.onblur = function(){
+         if(optionXcenter.checked){
+            option.xCenter = true;
+        }else{
+            option.xCenter = false;
+            option.x = parseInt(optionX.value);
+        }
+        draw(option);
+    }
+    optionXcenter.onchange = function(){
+        if(optionXcenter.checked){
+            option.xCenter = true;
+        }else{
+            option.xCenter = false;
+            option.x = parseInt(optionX.value);
+        }
+        draw(option);
+    }
+    var optionYcenter = document.getElementById("is-center-y");
+    var optionY =document.getElementById("text-option-y");
+    optionY.value = option.y;
+    optionY.onblur = function(){
+         if(optionYcenter.checked){
+            option.yCenter = true;
+        }else{
+            option.yCenter = false;
+            option.y = parseInt(optionY.value);
+        }
+        draw(option);
+    }
+    optionYcenter.onchange = function(){
+        if(optionYcenter.checked){
+            option.yCenter = true;
+        }else{
+            option.yCenter = false;
+            option.y = parseInt(optionY.value);
+        }
+        draw(option);
+    }
+    // 字体的颜色
+    var textColor = document.getElementById("text-color");
+    textColor.onblur = function(){
+        textColor.value === "" ? option.color = "#fff" : option.color = "#" + textColor.value;
+        draw(option);
+    }
+    // 字体大小
+    var textSize = document.getElementById("text-size");
+    textSize.onblur = function(){
+        textSize.value === "" ? option.fontSize = "20px Microsoft YaHei" : option.fontSize = textSize.value + "px Microsoft YaHei";
+        draw(option);
+    }
+    /******************************按钮的操作*****************************/
+    // 效果预览
+    function saveImageInfo(){
+        // 生成图片
+        console.log(canvas.width);
+        var image = canvas.toDataURL();
+        var w = window.open('about:blank','image from canvas');
+        // 把图片引进新的窗口
+        w.document.write("<img src='"+image+"' alt='from canvas'>");
+    }
+    
+    //图片类型
+    var imgType = document.getElementById("img-type");
+    imgType.onchange = function(){
+    		option.imgType =  this.value;
+    }
+    //下载图片
+    function downloadImg(fileName){
+    		//设置图片类型
+    		var Image = canvas.toDataURL("image/"+option.imgType).replace("image/"+ option.imgType, "image/octet-stream"); 
+    		console.log(Image);
+		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml','a');
+		save_link.href = Image;
+		//设置下载图片的名称
+		save_link.download = fileName + '.'+ option.imgType;
+		//下载图片
+		var event = document.createEvent('MouseEvents');
+		event.initMouseEvent('click',true,false, window, 0, 0, 0, 0,0, false, false, false, false, 0, null);
+		save_link.dispatchEvent(event);
+    }
+</script>
+</html>

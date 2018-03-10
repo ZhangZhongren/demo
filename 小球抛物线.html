@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .ball1{
+            transition: all linear 1s;
+        }
+        .ball2{
+            transition: all cubic-bezier(.75,-0.55,.93,-0.01) 1s;
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="ball1">
+        <div class="ball2">
+        </div>
+    </div>
+    <button onclick="sub()">点击</button>
+</body>
+<script>
+    function sub() {
+        document.getElementsByClassName("ball1")[0].style.transform = "translateX(300px)";
+        document.getElementsByClassName("ball2")[0].style.transform = "translateY(300px)";
+
+    }
+    var arr=['a',2,"x"];
+    console.log(arr.indexOf("x"))
+
+</script>
+</html>

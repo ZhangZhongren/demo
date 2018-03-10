@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.divOne{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="divOne"></div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/jQueryRotate.2.2.js"></script>
+<script type="text/javascript">
+	// 旋转45度
+	// $(document.body).click(function () {
+ // 		//方式1
+	//  	$('.divOne').rotate(45);//利用jq本身的rotate方法
+	//  	//方式2
+	//  	$('.divOne').rotate({ angle: 45 });//angle 旋转一个角度
+	// });
+
+	// 通过bind 属性
+	// 
+	// $('.divOne').rotate({
+	// 	 bind: {
+	// 		 mouseover: function () {
+	// 		  $(this).rotate({ animateTo: 180 });//animateTo 从当前的角度旋转到多少度
+	// 		 },
+	// 		 mouseout: function () {
+	// 		  $(this).rotate({ animateTo: 0 });
+	// 		 }
+	// 	 }
+	// });
+	// 	//方式2
+	// $('.divOne').mouseover(function () {
+	// 	 $(this).rotate({ animateTo: 180 });
+	// 	}).mouseout(function () {
+	// 	 $(this).rotate({animateTo:0});
+	// });
+
+	//演示3 不停旋转
+	//方式1
+	// var angle = 0;
+	// setInterval(function () {
+	//  angle += 3;
+	//  $('.divOne').rotate(angle);
+	// }, 50);
+	//方式2
+	// var rotation = function () {
+	// 	 $('.divOne').rotate({
+	// 		 angle: 0,
+	// 		 animateTo: 360,
+	// 		 callback:rotation //callback 旋转完成后的回调函数	
+	// 	 })
+	// }
+	// rotation();
+	//方式3
+	// var rotation = function () {
+	// 	 $('.divOne').rotate({
+	// 		 angle: 0,
+	// 		 animateTo: 360,
+	// 		 duration:4000, //	旋转持续时间，以毫秒为单位
+	// 		 callback: function(){
+	// 		 	alert("当前角度为360度")
+	// 		 },
+	// 		 // easing: function (x, t, b, c, d) {
+	// 		 //  return c * (t / d) + b;
+	// 		 // },  //自定义旋转速度、旋转效果，需要使用 jQuery.easing.js
+	// 	 })
+	// }
+	// rotation();
+
+	// stopRotate 这个函数只是简单地停止正在进行的旋转动画。
+	// $(".divOne").rotate({
+	//     bind: {
+	//         click: function () {
+	//             $(".divOne").rotate({
+	//                 angle: 0,
+	//                 animateTo: 180,
+	//                 duration: 6000
+	//             });
+	//             setTimeout(function () {
+	//                 $(".divOne").stopRotate();
+	// 				alert($(this).getRotateAngle());
+	//             }, 1000);
+	//         }
+	//     }
+	// });
+
+	// getRotateAngle 这个函数只是简单地返回旋转对象当前的角度。
+	// $(".divOne").rotate({
+	//     angle: 45,
+	//     bind: {
+	//         click: function () {
+	//             alert($(this).getRotateAngle());
+	//         }
+	//     }
+	// });
+
+
+</script>
+</html>
