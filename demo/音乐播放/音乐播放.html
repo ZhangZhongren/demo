@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				background: black;
+			}
+			#phone {
+				width: 322px;
+				height: 640px;
+				/*background: #ccc;*/
+				margin: 50px auto;
+				position: relative;
+			}
+			.top {
+				width: 322px;
+				height: 42px;
+				background: url(images/phone_top.png);
+			}	
+			.info {
+				width: 322px;
+				height: 20px;
+				background: url(images/top.jpg);
+			}
+			h2.SongName {
+				width: 320px;
+				height: 40px;
+				background: black;
+				text-align: center;
+				line-height: 40px;
+				color: white;
+				border: 1px solid white;
+				border-top: 0;
+				border-bottom: 0;
+			}	
+			.Lrc {
+				width: 320px;
+				height: 490px;
+				background: url(images/0.jpg) no-repeat;
+				border-right: 1px solid white;
+				border-left: 1px solid white;
+				background-size: cover;
+				overflow: hidden;
+			}
+			.Lrc p{
+				height: 20px;
+				line-height: 20px;
+				color: #625959;
+				text-align: center;
+				font-size: 18px;
+				font-weight: bold;
+				opacity: 0;
+			}
+			#content{
+				position: relative;
+				top: 0;
+				padding-top: 200px;
+			}
+			.footer {
+				width: 322px;
+				height: 47px;
+				background: url(images/phone_bottom.png);
+			}	
+			#btn {
+				width: 50px;
+				height: 50px;
+				background: url(images/normalmusic.svg);
+				background-size: 100%;
+				position: absolute;
+				left: 140px;
+				bottom: 50px;
+			}
+			.rotate {
+				/*动画名称 时间 匀速运动 无xian重复*/
+				animation: rot 5s linear infinite;
+			}
+			@keyframes rot{
+				from {
+					transform: rotate(0deg);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="phone">
+			<div class="top"></div>
+			<div class="info"></div>
+			<h2 class="SongName">刚好遇见你</h2>
+			<div class="Lrc">
+				<div id="content">
+				</div>
+			</div>
+			<div class="footer"></div>
+			<div id="btn" class=""></div>
+		</div>
+		<audio src="music/李玉刚-刚好遇见你.mp3" id="MyMusic"></audio>
+
+		<textarea id="txt" style="display: none;">
+				[ver:v1.0]
+				[ti:刚好遇见你 - 李玉刚]
+				[00:00.95]刚好遇见你 - 李玉刚
+				[00:02.74]作词：高进
+				[00:03.70]作曲：高进
+				[00:04.75]编曲：关天天
+				[00:12.56]我们哭了
+				[00:15.27]我们笑着
+				[00:18.60]我们抬头望天空
+				[00:21.43]星星还亮着几颗
+				[00:24.63]我们唱着
+				[00:27.56]时间的歌
+				[00:30.62]才懂得相互拥抱
+				[00:34.00]到底是为了什么
+				[00:36.94]因为我刚好遇见你
+				[00:40.32]留下足迹才美丽
+				[00:43.69]风吹花落泪如雨
+				[00:46.48]因为不想分离
+				[00:49.57]因为刚好遇见你
+				[00:52.59]留下十年的期许
+				[00:55.69]如果再相遇
+				[00:59.15]我想我会记得你
+				[01:14.28]我们哭了
+				[01:16.88]我们笑着
+				[01:20.29]我们抬头望天空
+				[01:22.96]星星还亮着几颗
+				[01:26.11]我们唱着
+				[01:29.11]时间的歌
+				[01:32.56]才懂得相互拥抱
+				[01:35.36]到底是为了什么
+				[01:38.47]因为我刚好遇见你
+				[01:41.84]留下足迹才美丽
+				[01:44.83]风吹花落泪如雨
+				[01:47.97]因为不想分离
+				[01:51.02]因为刚好遇见你
+				[01:54.09]留下十年的期许
+				[01:57.23]如果再相遇
+				[02:00.69]我想我会记得你
+				[02:03.69]因为刚好遇见你
+				[02:06.43]留下足迹才美丽
+				[02:09.57]风吹花落泪如雨
+				[02:12.64]因为不想分离
+				[02:15.76]因为刚好遇见你
+				[02:18.78]留下十年的期许
+				[02:21.83]如果再相遇
+				[02:24.98]我想我会记得你
+				[02:31.07]因为我刚好遇见你
+				[02:34.13]留下足迹才美丽
+				[02:37.25]风吹花落泪如雨
+		</textarea>
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			var MyMusic = document.getElementById("MyMusic");
+			var txt = document.getElementById("txt");
+			var con = document.getElementById("content");
+			var onOFF = true;
+			btn.onclick = function() {
+				if(onOFF) {
+					MyMusic.play(); //音乐播放
+					this.className = "rotate";
+					onOFF = false;
+				} else {
+					MyMusic.pause(); // 暂停播放
+					this.className = "";
+					onOFF = true;
+				}
+			}
+			// 歌词同步
+			var html = '';//定义一空变量存储歌词
+//			console.log(txt.value)
+			var Lrc = txt.value.split("[");  // 以“【” 切割
+ 			for(var i=0;i<Lrc.length; i++){
+				var arr = Lrc[i].split("]");
+				// console.log(arr[1]);
+				var times = arr[0].split(".");
+				var time  = times[0].split(":");
+				var ct = time[0]*60 + time[1]*1;
+				if(arr[1]){ // 判断有没有歌词
+					html+="<p id ="+ ct +">"+ arr[1] +"</p>"
+				}
+			}
+			// console.log(html);
+			con.innerHTML = html;//把歌词内容添加到歌词盒子里面
+
+
+			var ap = document.getElementsByTagName("p");
+			var n = 0;
+			MyMusic.addEventListener("timeupdate", function (){
+				// currentTime 当前播放的时间
+				// console.log(ParseInt(this.currentTime));
+				var cur = parseInt(this.currentTime);
+				// 用时间当ID 与当前播放时间比较
+				
+				if(document.getElementById(cur)){
+					var elm = document.getElementById(cur);
+					for (var i=0;i<ap.length;i++) {
+						ap[i].style.opacity="0";
+					}
+					elm.style.opacity="1";
+					elm.style.color = "red";
+					if(ap[n+2].id==cur){
+						con.style.top=-20*n + "px";
+						n++;
+					}
+				}
+			});
+			MyMusic.addEventListener("ended",function(){
+					btn.className="";
+					onOFF = true;
+					con.style.top="0";
+					n=0;
+					this.currentTime= 0;
+			});
+		</script>
+	</body>
+
+</html>

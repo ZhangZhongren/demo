@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <audio src="" id="audio"></audio>
+  <div id="play">播放</div>
+  <script>
+    
+    window.onload = function () {
+      document.getElementById('play').onclick = function () {
+        fetch('http://localhost:3001/').then(res => {
+          return res.blob()
+        }).then(res=>{
+          console.log(window.webkitURL.createObjectURL(res))
+          document.getElementById('audio').setAttribute('src', window.webkitURL.createObjectURL(res))
+          document.getElementById('audio').play()
+        })
+      }
+    }
+  </script>
+</body>
+</html>
